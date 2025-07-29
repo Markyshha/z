@@ -3,219 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Минимал Заметки</title>
+    <title>Текстовые заметки</title>
     <style>
-        /* Чёрно-белая палитра с анимациями */
-        :root {
-            --bg-color: #f8f8f8;
-            --text-color: #222;
-            --accent-color: #444;
-            --border-color: #ddd;
-            --shadow-color: rgba(0,0,0,0.1);
-            --card-bg: white;
-            --button-active: #e0e0e0;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-        }
-        
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #f5f5f5;
+            color: #333;
             margin: 0;
-            padding: 0;
+            padding: 8px;
             -webkit-tap-highlight-color: transparent;
         }
         
         .container {
             max-width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
         }
         
         h1 {
             text-align: center;
-            font-weight: 300;
+            font-weight: normal;
             margin: 12px 0;
             font-size: 24px;
-            animation: fadeIn 0.3s ease-out;
-        }
-        
-        .tabs {
-            display: flex;
-            margin-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-            animation: fadeIn 0.4s ease-out;
-        }
-        
-        .tab {
-            flex: 1;
-            text-align: center;
-            padding: 12px 0;
-            background: none;
-            border: none;
-            font-size: 14px;
-            color: var(--text-color);
-            position: relative;
-            transition: all 0.2s;
-        }
-        
-        .tab.active {
-            font-weight: bold;
-        }
-        
-        .tab.active:after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 25%;
-            width: 50%;
-            height: 2px;
-            background: var(--text-color);
-            animation: fadeIn 0.3s;
-        }
-        
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.3s;
-        }
-        
-        .tab-content.active {
-            display: block;
         }
         
         .card {
-            background: var(--card-bg);
-            border-radius: 4px;
-            box-shadow: 0 1px 3px var(--shadow-color);
+            background: white;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             margin-bottom: 12px;
             padding: 12px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .card:active {
-            transform: scale(0.99);
-            box-shadow: 0 1px 1px var(--shadow-color);
         }
         
         textarea {
             width: 100%;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
             padding: 8px;
             box-sizing: border-box;
-            resize: vertical;
-            min-height: 80px;
+            resize: none;
+            min-height: 100px;
             font-family: inherit;
             font-size: 14px;
             margin-bottom: 8px;
-            background: var(--card-bg);
-            color: var(--text-color);
         }
         
         .button {
-            background: var(--card-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 2px;
             padding: 10px 16px;
             font-size: 14px;
             margin-right: 8px;
             margin-bottom: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .button:active {
-            background: var(--button-active);
-            transform: scale(0.96);
-        }
-        
-        .button.primary {
-            background: var(--text-color);
-            color: var(--bg-color);
-            border-color: var(--text-color);
-        }
-        
-        .button.primary:active {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-        
-        .button-icon {
-            margin-right: 6px;
-            font-size: 16px;
         }
         
         .note {
-            margin-bottom: 12px;
-            animation: fadeIn 0.3s;
-        }
-        
-        .note-content {
-            margin-bottom: 8px;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-        
-        .note-image {
-            max-width: 100%;
-            max-height: 200px;
-            display: block;
-            margin: 8px 0;
+            background: white;
             border-radius: 2px;
-        }
-        
-        .audio-player {
-            width: 100%;
-            margin: 8px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 12px;
+            padding: 12px;
+            word-break: break-word;
         }
         
         .note-date {
             font-size: 12px;
-            color: var(--accent-color);
-            margin-top: 4px;
+            color: #777;
+            margin-top: 8px;
         }
         
         .note-actions {
             margin-top: 8px;
-            display: flex;
+            border-top: 1px solid #eee;
+            padding-top: 8px;
         }
         
-        .note-actions .button {
-            padding: 6px 10px;
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #777;
             font-size: 12px;
+            padding: 4px 8px;
         }
         
-        .recording {
-            animation: pulse 1.5s infinite;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        /* Оптимизация для Lumia 640 LTE */
         @media (max-width: 480px) {
             .button {
                 padding: 8px 12px;
-                font-size: 13px;
-            }
-            
-            .tab {
-                padding: 10px 0;
                 font-size: 13px;
             }
             
@@ -227,316 +100,64 @@
 </head>
 <body>
     <div class="container">
-        <h1>Минимал Заметки</h1>
+        <h1>Текстовые заметки</h1>
         
-        <div class="tabs">
-            <button class="tab active" data-tab="text">Текст</button>
-            <button class="tab" data-tab="voice">Голос</button>
-            <button class="tab" data-tab="image">Фото</button>
+        <div class="card">
+            <textarea id="note-text" placeholder="Введите текст заметки..."></textarea>
+            <button class="button" id="add-note">Добавить заметку</button>
         </div>
         
-        <div id="text-tab" class="tab-content active">
-            <div class="card">
-                <textarea id="note-text" placeholder="Напишите заметку..."></textarea>
-                <button class="button primary" id="add-text-note">
-                    <span class="button-icon">📝</span> Сохранить
-                </button>
-            </div>
-        </div>
-        
-        <div id="voice-tab" class="tab-content">
-            <div class="card">
-                <button class="button" id="record-button">
-                    <span class="button-icon">🎤</span> Запись
-                </button>
-                <button class="button primary hidden" id="save-button" disabled>
-                    <span class="button-icon">💾</span> Сохранить
-                </button>
-                <audio id="audio-playback" controls class="audio-player hidden"></audio>
-                <div id="recording-status" class="hidden" style="font-size: 12px; margin-top: 8px;">
-                    Идёт запись... <span class="recording">●</span>
-                </div>
-            </div>
-        </div>
-        
-        <div id="image-tab" class="tab-content">
-            <div class="card">
-                <input type="file" id="image-input" accept="image/*" style="display: none;">
-                <button class="button" id="select-image">
-                    <span class="button-icon">🖼️</span> Выбрать фото
-                </button>
-                <span id="image-name" style="font-size: 12px; margin-left: 8px;"></span>
-                <textarea id="image-note-text" placeholder="Описание фото..." style="margin-top: 8px;"></textarea>
-                <button class="button primary" id="add-image-note">
-                    <span class="button-icon">📸</span> Сохранить
-                </button>
-            </div>
-        </div>
-        
-        <div id="notes-list" style="margin-top: 16px;"></div>
+        <div id="notes-list"></div>
     </div>
     
     <script>
-        // Переключение вкладок
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                this.classList.add('active');
-                document.getElementById(this.dataset.tab + '-tab').classList.add('active');
-            });
-        });
-        
-        // Анимация при нажатии кнопок
-        document.querySelectorAll('.button').forEach(button => {
-            button.addEventListener('mousedown', function() {
-                this.classList.add('active');
-            });
-            
-            button.addEventListener('mouseup', function() {
-                this.classList.remove('active');
-            });
-            
-            button.addEventListener('mouseleave', function() {
-                this.classList.remove('active');
-            });
-        });
-        
-        // Текстовые заметки
-        document.getElementById('add-text-note').addEventListener('click', addTextNote);
-        
-        function addTextNote() {
-            const text = document.getElementById('note-text').value.trim();
+        // Добавление заметки
+        document.getElementById('add-note').addEventListener('click', function() {
+            var text = document.getElementById('note-text').value.trim();
             if (text) {
-                const note = {
-                    type: 'text',
-                    content: text,
-                    date: new Date()
-                };
-                saveNote(note);
+                addNote(text);
                 document.getElementById('note-text').value = '';
-                renderNotes();
-            }
-        }
-        
-        // Голосовые заметки
-        const recordButton = document.getElementById('record-button');
-        const saveButton = document.getElementById('save-button');
-        const recordingStatus = document.getElementById('recording-status');
-        
-        let mediaRecorder;
-        let audioChunks = [];
-        
-        recordButton.addEventListener('click', toggleRecording);
-        saveButton.addEventListener('click', saveRecording);
-        
-        function toggleRecording() {
-            if (recordButton.textContent.includes('Запись')) {
-                startRecording();
-                recordButton.innerHTML = '<span class="button-icon">⏹️</span> Стоп';
-                saveButton.classList.add('hidden');
-                recordingStatus.classList.remove('hidden');
-            } else {
-                stopRecording();
-                recordButton.innerHTML = '<span class="button-icon">🎤</span> Запись';
-                recordingStatus.classList.add('hidden');
-            }
-        }
-        
-        function startRecording() {
-            audioChunks = [];
-            
-            // Для совместимости с IE Mobile
-            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || 
-                                    navigator.mozGetUserMedia || navigator.msGetUserMedia;
-            
-            if (navigator.getUserMedia) {
-                navigator.getUserMedia({ audio: true },
-                    function(stream) {
-                        mediaRecorder = new MediaRecorder(stream);
-                        
-                        mediaRecorder.ondataavailable = function(event) {
-                            audioChunks.push(event.data);
-                        };
-                        
-                        mediaRecorder.start();
-                    },
-                    function(err) {
-                        alert('Ошибка доступа к микрофону: ' + err.name);
-                    }
-                );
-            } else {
-                alert('Ваш браузер не поддерживает запись аудио');
-            }
-        }
-        
-        function stopRecording() {
-            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-                mediaRecorder.stop();
-                mediaRecorder.onstop = function() {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                    const audioUrl = URL.createObjectURL(audioBlob);
-                    const audioPlayback = document.getElementById('audio-playback');
-                    
-                    audioPlayback.src = audioUrl;
-                    audioPlayback.classList.remove('hidden');
-                    saveButton.disabled = false;
-                    saveButton.classList.remove('hidden');
-                    
-                    // Освобождаем микрофон
-                    mediaRecorder.stream.getTracks().forEach(track => track.stop());
-                };
-            }
-        }
-        
-        function saveRecording() {
-            const audioPlayback = document.getElementById('audio-playback');
-            if (audioPlayback.src) {
-                const note = {
-                    type: 'voice',
-                    content: 'Голосовая заметка',
-                    audioUrl: audioPlayback.src,
-                    date: new Date()
-                };
-                
-                saveNote(note);
-                renderNotes();
-                
-                // Сброс
-                audioPlayback.src = '';
-                audioPlayback.classList.add('hidden');
-                saveButton.disabled = true;
-                saveButton.classList.add('hidden');
-            }
-        }
-        
-        // Заметки с изображениями
-        document.getElementById('select-image').addEventListener('click', function() {
-            document.getElementById('image-input').click();
-        });
-        
-        document.getElementById('image-input').addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                document.getElementById('image-name').textContent = file.name;
             }
         });
         
-        document.getElementById('add-image-note').addEventListener('click', addImageNote);
-        
-        function addImageNote() {
-            const fileInput = document.getElementById('image-input');
-            const text = document.getElementById('image-note-text').value.trim();
-            
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    const note = {
-                        type: 'image',
-                        content: text || 'Фото заметка',
-                        imageUrl: e.target.result,
-                        date: new Date()
-                    };
-                    
-                    saveNote(note);
-                    renderNotes();
-                    
-                    // Сброс
-                    fileInput.value = '';
-                    document.getElementById('image-note-text').value = '';
-                    document.getElementById('image-name').textContent = '';
-                };
-                
-                reader.readAsDataURL(file);
-            } else if (text) {
-                const note = {
-                    type: 'text',
-                    content: text,
-                    date: new Date()
-                };
-                
-                saveNote(note);
-                renderNotes();
-                document.getElementById('image-note-text').value = '';
+        // Для Lumia: обработка нажатия Enter в текстовом поле
+        document.getElementById('note-text').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('add-note').click();
             }
-        }
+        });
         
-        // Работа с заметками
-        function saveNote(note) {
-            const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+        function addNote(text) {
+            var notes = getNotes();
+            var note = {
+                text: text,
+                date: new Date()
+            };
             notes.push(note);
-            localStorage.setItem('notes', JSON.stringify(notes));
-        }
-        
-        function deleteNote(index) {
-            const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-            notes.splice(index, 1);
-            localStorage.setItem('notes', JSON.stringify(notes));
+            saveNotes(notes);
             renderNotes();
         }
         
-        function renderNotes() {
-            const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-            const notesList = document.getElementById('notes-list');
-            
-            notesList.innerHTML = '<h2 style="margin-bottom: 12px;">Ваши заметки</h2>';
-            
-            if (notes.length === 0) {
-                notesList.innerHTML += '<div class="card" style="text-align: center; color: var(--accent-color);">Нет заметок</div>';
-                return;
-            }
-            
-            notes.reverse().forEach((note, index) => {
-                const noteElement = document.createElement('div');
-                noteElement.className = 'note card';
-                
-                const content = document.createElement('div');
-                content.className = 'note-content';
-                content.textContent = note.content;
-                
-                const date = document.createElement('div');
-                date.className = 'note-date';
-                date.textContent = formatDate(note.date);
-                
-                const actions = document.createElement('div');
-                actions.className = 'note-actions';
-                
-                const deleteBtn = document.createElement('button');
-                deleteBtn.className = 'button';
-                deleteBtn.innerHTML = '<span class="button-icon">🗑️</span> Удалить';
-                deleteBtn.addEventListener('click', () => deleteNote(notes.length - 1 - index));
-                
-                noteElement.appendChild(content);
-                
-                if (note.type === 'image' && note.imageUrl) {
-                    const img = document.createElement('img');
-                    img.className = 'note-image';
-                    img.src = note.imageUrl;
-                    noteElement.appendChild(img);
-                }
-                
-                if (note.type === 'voice' && note.audioUrl) {
-                    const audio = document.createElement('audio');
-                    audio.className = 'audio-player';
-                    audio.controls = true;
-                    audio.src = note.audioUrl;
-                    noteElement.appendChild(audio);
-                }
-                
-                noteElement.appendChild(date);
-                actions.appendChild(deleteBtn);
-                noteElement.appendChild(actions);
-                
-                notesList.appendChild(noteElement);
-            });
+        function deleteNote(index) {
+            var notes = getNotes();
+            notes.splice(index, 1);
+            saveNotes(notes);
+            renderNotes();
         }
         
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleString('ru-RU', {
+        function getNotes() {
+            var notesJson = localStorage.getItem('notes');
+            return notesJson ? JSON.parse(notesJson) : [];
+        }
+        
+        function saveNotes(notes) {
+            localStorage.setItem('notes', JSON.stringify(notes));
+        }
+        
+        function formatDate(date) {
+            var d = new Date(date);
+            return d.toLocaleString('ru-RU', {
                 day: '2-digit',
                 month: '2-digit',
                 year: 'numeric',
@@ -545,18 +166,59 @@
             });
         }
         
-        // Инициализация
-        document.addEventListener('DOMContentLoaded', function() {
-            renderNotes();
+        function renderNotes() {
+            var notes = getNotes();
+            var notesList = document.getElementById('notes-list');
             
-            // Для совместимости с IE Mobile
-            if (!window.MediaRecorder) {
-                document.getElementById('voice-tab').innerHTML = `
-                    <div class="card" style="text-align: center;">
-                        <p>Голосовые заметки не поддерживаются в вашем браузере</p>
-                    </div>
-                `;
+            notesList.innerHTML = '';
+            
+            if (notes.length === 0) {
+                notesList.innerHTML = '<div class="note">Нет заметок</div>';
+                return;
             }
+            
+            // Отображаем заметки в обратном порядке (новые сверху)
+            notes.slice().reverse().forEach(function(note, index) {
+                var noteElement = document.createElement('div');
+                noteElement.className = 'note';
+                
+                var textElement = document.createElement('div');
+                textElement.textContent = note.text;
+                
+                var dateElement = document.createElement('div');
+                dateElement.className = 'note-date';
+                dateElement.textContent = formatDate(note.date);
+                
+                var actionsElement = document.createElement('div');
+                actionsElement.className = 'note-actions';
+                
+                var deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.textContent = 'Удалить';
+                deleteBtn.onclick = function() {
+                    // Корректируем индекс из-за reverse()
+                    deleteNote(notes.length - 1 - index);
+                };
+                
+                noteElement.appendChild(textElement);
+                noteElement.appendChild(dateElement);
+                actionsElement.appendChild(deleteBtn);
+                noteElement.appendChild(actionsElement);
+                
+                notesList.appendChild(noteElement);
+            });
+        }
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Для Lumia: полифилл для addEventListener (на случай старых версий IE)
+            if (!Element.prototype.addEventListener) {
+                Element.prototype.addEventListener = function(type, listener) {
+                    this.attachEvent('on' + type, listener);
+                };
+            }
+            
+            renderNotes();
         });
     </script>
 </body>
